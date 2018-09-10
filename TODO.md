@@ -37,6 +37,8 @@
 - [ ] VIN db lookup for confirmation on car make? (2)
 - [ ] setInterval EXP for good driving! (2)
 - [ ] figure out how much upvotes/downvotes, tickets affect rating (3)
+- [ ] clean up layout (5)
+- [ ] do i need a separate db? (7)
 
  - future stuff
   - [ ] img upload (1)
