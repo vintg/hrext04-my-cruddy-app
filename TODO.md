@@ -30,10 +30,23 @@
 
  ## Next Steps
 
-  - [ ] factor out common functionality
-  - [ ] testing
+- [ ] Rating system/scale (ELO/chess/out of 5 stars?) (3)
+- [ ] Upvote/downvote (1)
+- [ ] input validation (1)
+- [ ] possible comment/feedback box for details (1)
+- [ ] VIN db lookup for confirmation on car make? (2)
+- [ ] setInterval EXP for good driving! (2)
+- [ ] figure out how much upvotes/downvotes, tickets affect rating (3)
+- [ ] clean up layout (5)
+- [ ] do i need a separate db? (7)
 
-
+ - future stuff
+  - [ ] img upload (1)
+  - [ ] integrate car recognition (5)
+  - [ ] MNIST recognition for letters/numbers (5)
+  - [ ] maybe speech recognition for voice input (10)
+  - [ ] figure out how to use cell phone gyroscope sensor to detect sudden braking, stop/go pattern, etc. (10)
+  
   ## Feature list
   * denotes on my to do for the project
   2.5 days = 20 hours
@@ -43,42 +56,3 @@
   5 = 3 hours
   7 = 5 hours
   10 = full day + ??
-
-  *(5) add due date
-  *(7) time stamps (moment.js)
-  (5) format the display of the items in a list (need to add more detail)
-  (??) fix the layout
-  (7) color coded priority
-  highlight certain items
-  mouse over to see details
-  ability to select and delete multiple items (checkbox?)
-  add status/priorty and allow for sorting based on status/priority
-  Item categories
-  ability to add/leave comments on item
-  upload files/images
-  share item
-  drag and drop to arrange
-  search/filter on keyup/keydown
-  reminders? (push operation?)
-  secret corgi
-  delete item confirmation
-  fillet edges of boxes
-  font changes/choices? (google fonts)
-  Panic Button
-  Highlight based on status/priority/due date
-  options page (ability to set/toggle options)
-  show deleted items and allow for undelete
-  pagination (if more than 10 show a next button)
-  category pages (not really pages, just a show/hide trick)
-  strike-through completed/deleted items (styling)
-  add more items button, that shows another input section allowing for multiple items to be added at once
-  Fun stuff
-  auto-complete when searching/filtering
-
-
-
-
-
-
-
-
