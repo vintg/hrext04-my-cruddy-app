@@ -1,0 +1,70 @@
+/* theme 
+white
+#404366 light
+#303356 mid
+#1f2243 dark
+#3eb6d8 buttons
+*/
+
+input[type=text]{
+    border-radius:2em;
+	resize:none;
+	box-sizing:border-box;
+	padding: 1em;
+	height:3em;
+	overflow-y:hidden;
+}
+
+.wrapper {
+    display: flex;  
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .wrapper > * {
+    padding: 60px;
+    flex: 1 100%;
+  }
+  
+  .header {
+    background: #1f2243;
+  
+  }
+  
+  .footer {
+    background: #1f2243;
+  }
+  
+  .main {
+    text-align: left;
+    background: #404366;
+    min-height:960px;
+    min-width:50%;
+  }
+  
+  .aside-1 {
+    background: #303356;
+  }
+  
+  .aside-2 {
+    background: #303356;
+  }
+  
+  @media all and (min-width: 600px) {
+    .aside { flex: 1 auto; }
+  }
+  
+  @media all and (min-width: 800px) {
+    .main    { flex: 3 0px; }
+    .aside-1 { order: 1; } 
+    .main    { order: 2; }
+    .aside-2 { order: 3; }
+    .footer  { order: 4; }
+  }
+  
+  body {
+    color: white;
+    font-family:lato;
+    -webkit-font-smoothing: antialiased;
+  }
