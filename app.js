@@ -1,25 +1,86 @@
 $(document).ready(function() {
 
+  var ValidPlate = function(state){
+  
+  var re = ^(\d{6}|\d{7})$; // any 6 or 7
+  /*by county
+
+  
+  Hawaii: K Kaua'i, M/L Maui, other Honolulu
+  Idaho: 1A Ada, 2T Twin Falls, V Valley
+  Guam 
+  */
+  
+  var county = ['ID', 'MT', 'WY', 'SD', 'NE', 'MS', 'AL', 'HI'];
+  var one5 = ['NV'];
+  var two4 = ['TN','DC','ME'];
+  var three3 = ['OR','AK','UT','CO','NM','OK','KS','AR','LA','KY','ND','MN','IA','SC','VT','PR'];
+  var four2 = ['FL','NJ'];
+  var seven = ['NH'];
+  var two5 = ['IL', 'MD', 'CT'];
+  var three4 = ['WA', 'CA', 'AZ', 'TX', 'WI', 'MI', 'OH', 'PA','NY','VA','NC','GA'];
+  var random = ['IN', 'DE', 'RI']; 
+  var moexp = ['MO','WV','MA'];
+
+
+
+  if(county.includes(state)){
+    // magic happens
+  
+  // 6 digits
+
+  } else if(one5.includes(state)){ // 1 L 5 N
+    re = ^[a-zA-Z]\d{5};
+  } else if () { // 2 L 4 N
+  
+
+  }
+  // 3 L 3 N
+  // 4 L 2 N
+
+  
+
+  /*7 digits
+
+  //7 numbers
+
+  // 2 letters, 5 #
+  
+  // 3 letters, 4 #
+  
+  */
+
+  };
+
 
   $(".add-text-btn").on("click", function(){
 
     // store values
     let inputKey = $(".user-input-title").val();
-    let inputValue = $(".user-input-body").val();
+    let inputValue = [ 
+                    $(".user-input-body").val(),
+                    $(".user-input-state").val() 
+                    ];
 
-    // clear values
+    // clear input box values
     $(".user-input-title").val("");
     $(".user-input-body").val("");
+    $(".user-input-state").val(""); 
 
-    //console.log(inputKey, inputValue);
+    console.log(inputKey, inputValue);
 
-    localStorage.setItem(inputKey, inputValue);
+    if(ValidPlate(inputValue[1])){
+      localStorage.setItem(inputKey, inputValue);
+    } else {
+      console.log('Invalid license plate ID');
+    }
+
     // data-display
     //let itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  localStorage.getItem(inputKey) + '</div>';
     //$(".display").html(itemHtml);
 
-    //console.log(localStorage);
-    
+    console.log(localStorage);
+
     // how can we delegate this event to the outer html node?
     // https://learn.jquery.com/events/event-delegation/
 

@@ -6,8 +6,17 @@ white
 #3eb6d8 buttons
 */
 
+label {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  color: #888888;
+  font-size: 1em;
+  font-weight: 1;
+}
+
 input[type=text]{
-    border-radius:2em;
+  background:white;
 	resize:none;
 	box-sizing:border-box;
 	padding: 1em;
@@ -23,13 +32,12 @@ input[type=text]{
   }
   
   .wrapper > * {
-    padding: 60px;
+    padding: 10px;
     flex: 1 100%;
   }
   
   .header {
     background: #1f2243;
-  
   }
   
   .footer {
