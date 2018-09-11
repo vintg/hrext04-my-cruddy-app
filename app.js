@@ -2,10 +2,9 @@ $(document).ready(function() {
 
   var ValidPlate = function(state){
   
-  var re = ^(\d{6}|\d{7})$; // any 6 or 7
+  var re = '^(\d{6}|\d{7})$'; // any 6 or 7
+ 
   /*by county
-
-  
   Hawaii: K Kaua'i, M/L Maui, other Honolulu
   Idaho: 1A Ada, 2T Twin Falls, V Valley
   Guam 
@@ -22,34 +21,26 @@ $(document).ready(function() {
   var random = ['IN', 'DE', 'RI']; 
   var moexp = ['MO','WV','MA'];
 
-
-
   if(county.includes(state)){
     // magic happens
-  
-  // 6 digits
-
-  } else if(one5.includes(state)){ // 1 L 5 N
-    re = ^[a-zA-Z]\d{5};
-  } else if () { // 2 L 4 N
-  
-
-  }
-  // 3 L 3 N
-  // 4 L 2 N
-
-  
-
-  /*7 digits
-
-  //7 numbers
-
-  // 2 letters, 5 #
-  
-  // 3 letters, 4 #
-  
-  */
-
+    } else if (moexp.includes(state)) {
+    // more magic happens
+    } else if(one5.includes(state)) { // 1 L 5 N
+      re = '^[a-zA-Z]\d{5}';
+    } else if (two4.includes(state)) { // 2 L 4 N
+      re = '^[a-zA-Z]{2}\d{4}';
+    } else if (three3.includes(state)) { // 3 L 3 N
+      re = '^[a-zA-Z]{3}\d{3}';
+    } else if (four2.includes(state)) { // 4 L 2 N
+      re = '^[a-zA-Z]{4}\d{2}';
+    } else if (seven.includes(state)) { // 7 N
+      re = '^[a-zA-Z\d]{7}';
+    } else if (two5.includes(state)) { // 2 L 5 N
+      re = '^[a-zA-Z]{2}\d{5}';
+    } else if (three3.includes(state)){ // 3 L 4 N
+      re = '^[a-zA-Z]{3}\d{4}';
+    }
+    return state.match(re);
   };
 
 
