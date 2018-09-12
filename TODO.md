@@ -39,6 +39,7 @@
 - [√] figure out how much upvotes/downvotes, tickets affect rating (3)
 - [√] clean up layout (8)
 - [ ] do i need a separate db? (10)
+- [ ] Real time ticker style list of nearby users (7)
 
  - future stuff
   - [ ] img upload (2)
