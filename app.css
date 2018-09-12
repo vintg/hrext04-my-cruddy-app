@@ -111,6 +111,18 @@ input[type=text]{
 
   .profile{
     min-height: 170px;
+    font-size:2em;
+
+  }
+
+  .avatar{
+    background:transparent;
+    background-image:url(img/avatar.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:300px;
+    height:100px;
+    position:center;
   }
   
   .aside-1 {
