@@ -1,16 +1,22 @@
-/* theme 
-white
-#404366 light
-#303356 mid
-#1f2243 dark
-#3eb6d8 buttons
-*/
+.user-input-state{
+  display: inline-block;
+}
+
+.add-text-btn, .del-text-btn{
+  margin-top:1em;
+  background:transparent;
+  border-color: black;
+  border-radius: 2em;
+  color: black;
+  width:10em;
+  height:3em;
+  margin-right:3em;
+}
 
 label {
   display: block;
   margin-top: 2em;
   margin-bottom: 0.5em;
-  color: #888;
   font-size: 1em;
   font-weight: 1;
 }
@@ -21,7 +27,7 @@ input[type=text]{
 	box-sizing:border-box;
 	padding: 1em;
 	height:3em;
-	overflow-y:hidden;
+  overflow-y:hidden;
 }
 
 .wrapper {
@@ -29,38 +35,90 @@ input[type=text]{
     flex-flow: row wrap;
     font-weight: bold;
     text-align: center;
+    height:100%;
   }
   
   .wrapper > * {
-    padding: 10px;
-    flex: 1 100%;
+    flex: 100%;
+    margin:-10px;
   }
   
   .header {
-    background: #1f2243;
+    color: white;
+    background: black;
+    min-height:100px;
+    width: 100%;
+    display: inline-block;
+    z-index:1;
+  }
+
+  #map, #embedded{
+    height:100%;
+    width:100%;
+    display:inline-block;    
+    flex-flow: row-reverse;
+    margin:2em;
+  }
+
+  #embedded{
+    min-width:640px;
   }
   
   .footer {
-    background: #1f2243;
+    background: black;
+    color: #888;
+    font-size:.8em;
+    justify-content: center;
+    padding:2em;
+    width:100%;
+    margin-left:-10px;
+    bottom:0;
+    position: fixed;
+    text-align: center;
+   
   }
-  
+
+  .display{
+    min-height:6em;
+  }
+
   .main {
+    padding:2em;
     text-align: left;
-    background: #404366;
-    min-height:960px;
-    min-width:50%;
+    background: transparent;
+    position: relative;
+    vertical-align: -webkit-baseline-middle;
+    margin-top:10%;
   }
   
   .aside-1 {
-    background: #303356;
+    background: transparent;
   }
   
   .aside-2 {
-    background: #303356;
+    background: transparent;
+    opacity:.7;
+    flex-flow: row-reverse;
+    display:flex;
+    min-width:50%;
+    min-height: 100%;
+    padding:2em;
+    position:sticky;
+  }
+
+  #cmt{
+    
+    width:500px;
+    margin: 2em 0 2em 0 ;
+  }
+
+  .comments{
+    height:100px;
+    width:300px;
   }
   
   @media all and (min-width: 600px) {
-    .aside { flex: 1 auto; }
+    .aside { flex: 0 auto; }
   }
   
   @media all and (min-width: 800px) {
@@ -72,7 +130,15 @@ input[type=text]{
   }
   
   body {
-    color: white;
     font-family:lato;
     -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    position:relative;
+    background-image:url(img/tesla.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;  
+    background-size: cover;
+    background-color:black;
+    height:100%;
   }

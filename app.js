@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-  var ValidPlate = function(state){
+  var validPlate = function(serial, state){
   
-  var re = '^(\d{6}|\d{7})$'; // any 6 or 7
+  var re = /^(\d{6}|\d{7})$/; // any 6 or 7
  
   /*by county
   Hawaii: K Kaua'i, M/L Maui, other Honolulu
@@ -21,26 +21,29 @@ $(document).ready(function() {
   var random = ['IN', 'DE', 'RI']; 
   var moexp = ['MO','WV','MA'];
 
-  if(county.includes(state)){
+    if(county.includes(state)){
     // magic happens
+      if(state ==='ID'){
+        re = /^([E|K|N|S|V|W][A-Z\d]{6}|[1,2][A-C|F|G|J|M|O|P|T][A-Z\d]{5}$|[3,4][B|C|L][A-Z\d]{5}|[5-7][B|C][A-Z\d]{5}|[8,9]B[A-Z\d]{5}|10B[A-Z\d]{4})$/;
+      }
     } else if (moexp.includes(state)) {
     // more magic happens
     } else if(one5.includes(state)) { // 1 L 5 N
-      re = '^[a-zA-Z]\d{5}';
+      re = /^([A-Z]\d{5})$/;
     } else if (two4.includes(state)) { // 2 L 4 N
-      re = '^[a-zA-Z]{2}\d{4}';
+      re = /^([A-Z]{2}\d{4})$/;
     } else if (three3.includes(state)) { // 3 L 3 N
-      re = '^[a-zA-Z]{3}\d{3}';
+      re = /^([A-Z]{3}\d{3})$/;
     } else if (four2.includes(state)) { // 4 L 2 N
-      re = '^[a-zA-Z]{4}\d{2}';
+      re = /^([A-Z]{4}\d{2})$/;
     } else if (seven.includes(state)) { // 7 N
-      re = '^[a-zA-Z\d]{7}';
+      re = /^([A-Z\d]{7})$/;
     } else if (two5.includes(state)) { // 2 L 5 N
-      re = '^[a-zA-Z]{2}\d{5}';
+      re = /^([A-Z]{2}\d{5})$/;
     } else if (three3.includes(state)){ // 3 L 4 N
-      re = '^[a-zA-Z]{3}\d{4}';
+      re = /^([A-Z]{3}\d{4})$/;
     }
-    return state.match(re);
+    return !!serial.match(re);
   };
 
 
@@ -58,18 +61,22 @@ $(document).ready(function() {
     $(".user-input-body").val("");
     $(".user-input-state").val(""); 
 
-    console.log(inputKey, inputValue);
+    console.log(inputKey, inputValue, inputValue[1]);
 
-    if(ValidPlate(inputValue[1])){
+    if(validPlate(inputKey, inputValue[1])){
+      
+      //store
       localStorage.setItem(inputKey, inputValue);
+
+
+      // data-display
+      let itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  localStorage.getItem(inputKey) + '</div>';
+      $(".display").html(itemHtml);
     } else {
+      alert('Invalid license plate ID');
       console.log('Invalid license plate ID');
     }
-
-    // data-display
-    //let itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  localStorage.getItem(inputKey) + '</div>';
-    //$(".display").html(itemHtml);
-
+ 
     console.log(localStorage);
 
     // how can we delegate this event to the outer html node?
@@ -89,6 +96,18 @@ $(document).ready(function() {
 
   });
 
+  var star = function(){
+    const starTotal = 5;
+ 
+    for(const rating in ratings) {  
+      // 2
+      const starPercentage = (ratings[rating] / starTotal) * 100;
+      // 3
+      const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+      // 4
+      document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded; 
+    }
+  };
 
 
    // TODO add back in later
