@@ -97,7 +97,6 @@ input[type=text]{
     margin-left:-10px;
     bottom:0;
     position: fixed;
-   
   }
 
   .display{
@@ -120,9 +119,24 @@ input[type=text]{
     background-image:url(img/avatar.png);
     background-size:contain;
     background-repeat: no-repeat;
-    width:300px;
+    width:260px;
     height:100px;
-    position:center;
+    background-position:center;
+  }
+
+  .achievements{
+    background-transparent;
+    background-image:url(img/trophy.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:100px;
+    height:100px;
+  }
+
+  #grid{
+    display:inline-flex;
+    flex-flow:row;
+    width:500px;
   }
   
   .aside-1 {

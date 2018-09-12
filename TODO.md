@@ -30,20 +30,20 @@
 
  ## Next Steps
 
-- [√] Rating system/scale (ELO/chess/out of 5 stars?) (3)
-- [ ] Upvote/downvote (1)
+- [√] Rating system/scale (ELO/chess/out of 5 stars?) (5)
+- [ ] Upvote/downvote (3)
 - [√] input validation (1)
 - [√] possible comment/feedback box for details (1)
-- [ ] VIN db lookup for confirmation on car make? (2)
-- [ ] setInterval EXP for good driving! (2)
-- [ ] figure out how much upvotes/downvotes, tickets affect rating (3)
-- [√] clean up layout (5)
-- [ ] do i need a separate db? (7)
+- [ ] VIN db lookup for confirmation on car make? (6)
+- [√] setInterval EXP for good driving! (2)
+- [√] figure out how much upvotes/downvotes, tickets affect rating (3)
+- [√] clean up layout (8)
+- [ ] do i need a separate db? (10)
 
  - future stuff
-  - [ ] img upload (1)
-  - [ ] integrate car recognition (5)
-  - [ ] MNIST recognition for letters/numbers (5)
+  - [ ] img upload (2)
+  - [ ] integrate car recognition (8)
+  - [ ] MNIST recognition for letters/numbers (10)
   - [ ] maybe speech recognition for voice input (10)
   - [ ] figure out how to use cell phone gyroscope sensor to detect sudden braking, stop/go pattern, etc. (10)
   
