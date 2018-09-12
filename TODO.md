@@ -40,8 +40,10 @@
 - [√] clean up layout (8)
 - [ ] do i need a separate db? (10)
 - [ ] Real time ticker style list of nearby users (7)
+- [ ] User account reg/login, integrate
 
  - future stuff
+  - [ ] rewards! (8)
   - [ ] img upload (2)
   - [ ] integrate car recognition (8)
   - [ ] MNIST recognition for letters/numbers (10)
