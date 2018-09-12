@@ -2,15 +2,28 @@
   display: inline-block;
 }
 
-.add-text-btn, .del-text-btn{
+.add-text-btn {
   margin-top:1em;
-  background:transparent;
-  border-color: black;
+  background:black;
+  border-color: whitesmoke;
   border-radius: 2em;
-  color: black;
+  color: whitesmoke;
   width:10em;
   height:3em;
   margin-right:3em;
+  display: block;
+}
+
+.add-text-btn:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.del-text-btn{
+  margin-top:1em;
+  background:transparent;
+  color:grey;
+  border:none;
 }
 
 label {
@@ -46,24 +59,39 @@ input[type=text]{
   .header {
     color: white;
     background: black;
-    min-height:100px;
     width: 100%;
     display: inline-block;
-    z-index:1;
+    justify-content: space-evenly;
+    margin-top:-10px;
+    margin-left:-10px;
+    min-height:160px;
+    background-image: url(img/driveexp.png);
+    background-size:21%;
+    background-position:0;
+    background-origin: content-box;
+    background-repeat:no-repeat;
   }
+
+  .reg, .login{
+    float:right;
+    padding:2em;
+    margin-top:1em;
+    margin-right:2em;
+  }
+
 
   #map, #embedded{
-    height:100%;
+    min-height:50%;
     width:100%;
-    display:inline-block;    
-    flex-flow: row-reverse;
-    margin:2em;
+    margin:2em 0 2em 0;
+    flex-flow: row;
   }
 
-  #embedded{
-    min-width:640px;
+  #map{
+    max-width:320px;
   }
-  
+ 
+
   .footer {
     background: black;
     color: #888;
@@ -83,16 +111,21 @@ input[type=text]{
   }
 
   .main {
+    margin-top:3em;
+   color:whitesmoke;
+  }
+
+  .profile{
+    min-height: 170px;
+  }
+  
+  .aside-1 {
     padding:2em;
     text-align: left;
     background: transparent;
     position: relative;
     vertical-align: -webkit-baseline-middle;
-    margin-top:10%;
-  }
-  
-  .aside-1 {
-    background: transparent;
+    margin-top:2em;
   }
   
   .aside-2 {
@@ -102,19 +135,26 @@ input[type=text]{
     display:flex;
     min-width:50%;
     min-height: 100%;
-    padding:2em;
+    padding:1em;
+    margin:1em;
     position:sticky;
   }
 
   #cmt{
-    
-    width:500px;
-    margin: 2em 0 2em 0 ;
+  margin: 1em 0 1em 0;
+  }
+  
+  overflow-wrap {
+    overflow-wrap: break-word;
   }
 
-  .comments{
-    height:100px;
-    width:300px;
+  textarea{
+    font-family: lato;
+    height:10em;
+    width:100%;
+    resize:none;
+    box-sizing:border-box;
+    padding: 1em;
   }
   
   @media all and (min-width: 600px) {
@@ -130,11 +170,12 @@ input[type=text]{
   }
   
   body {
-    font-family:lato;
+    font-family:lato light;
+    color:whitesmoke;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
     position:relative;
-    background-image:url(img/tesla.jpg);
+    background-image:url(img/bg.jpg);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;  

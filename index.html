@@ -14,10 +14,21 @@
   </head>
   <body>
     <div class = "wrapper">
-      <header class="header"><h1>DriverUP</h1></header>
+
+        <header class="header">
+            <div class = 'reg'>Register</div>
+            <div class = 'login'>Login</div>
+        </header>
+    
         <article class = "main">
-      
-          <label for="default">Enter a driver rating submission</label>
+      test text
+
+        </article>
+
+        <aside class = "aside aside-1">
+            <div class="profile"></div>
+
+            <label for="default">Enter a driver rating submission</label>
           <input type="text" class="user-input-title" placeholder="License Plate">
           <input type="text" class="user-input-state" placeholder="State/Territory" list = "states">
               <datalist id="states">
@@ -91,20 +102,13 @@
                   <label for="first-rate5" title="Amazing">5 stars</label>
                 </fieldset>
               
-          <div id = "cmt">
-            Comments:
-            <input type="text" class="comments" placeholder="Record comments"> 
-          </div>
-                
+          <div id = "cmt">Comments:</div>
+          <textarea class="comments" placeholder="Record comments"></textarea> 
+              
           <button class="add-text-btn">Submit</button>
-          <button class="del-text-btn">Delete</button>
+          <button class="del-text-btn">Delete (admin)</button>
 
           <div class="display"></div>
-
-        </article>
-
-        <aside class = "aside aside-1">
-          
         </aside>
 
         <aside class = "aside aside-2">
@@ -117,7 +121,7 @@
                   var us = {lat: 40.763821, lng: -73.977916};
                   // The map
                   var map = new google.maps.Map(
-                      document.getElementById('map'), {zoom: 7, center: us});
+                      document.getElementById('map'), {zoom: 11, center: us});
                   // The marker
                   var marker = new google.maps.Marker({position: us, map: map});
                 }
@@ -133,7 +137,7 @@
 
                   <div id="embedded">
                       <!-- Embedded gmap -->
-                   <embed src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5386.529801631205!2d-73.9908567765394!3d40.73809618746295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b79dcdc251b8415!2sGramercy+Tavern!5e0!3m2!1sen!2sus!4v1536720264668" height="100%" width = "100%" frameborder="0" style="border:0" allowfullscreen>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6046.142654729521!2d-73.988506!3d40.738456!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b79dcdc251b8415!2sGramercy+Tavern!5e0!3m2!1sen!2sus!4v1536723430338" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
                   
         </aside>
@@ -142,5 +146,5 @@
         
     
   </body>
-  <footer class="footer">© 2018 DriverUP</footer>
+  <footer class="footer">© 2018 DriveEXP</footer>
 </html>
