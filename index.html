@@ -16,13 +16,14 @@
     <div class = "wrapper">
 
         <header class="header">
-            <div class = 'reg'>Register</div>
-            <div class = 'login'>Login</div>
+            <button class='reg'>Register</button>
+            <button class='login'>Login</button>
         </header>
     
         <article class = "main">
-      test text
-
+      <!-- create canvas table 
+        list ranking ID, car make, coords?, rating
+        -->
         </article>
 
         <aside class = "aside aside-1">
@@ -36,8 +37,8 @@
             </div>
 
             <label for="default">Enter a driver rating submission</label>
-          <input type="text" class="user-input-title" placeholder="License Plate">
-          <input type="text" class="user-input-state" placeholder="State/Territory" list = "states">
+            <input type="text" class="user-input-title" placeholder="License Plate">
+            <input type="text" class="user-input-state" placeholder="State/Territory" list = "states">
               <datalist id="states">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -119,6 +120,7 @@
         </aside>
 
         <aside class = "aside aside-2">
+            <!-- street level / streaming cam view below gmap directions -->
 
             <div id="map"></div>
             <script>
