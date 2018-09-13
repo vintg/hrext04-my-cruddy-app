@@ -22,13 +22,34 @@
     
         <article class = "main">
       <!-- create canvas table 
-        list ranking ID, car make, coords?, rating
+        list ranking, ID, car make, coords?, rating
         -->
+        <table id = "leaderboard">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Distance</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="driverTable">
+                <tr class>
+                    <td class ='dRank'></td>
+                    <td class ='dID'></td>
+                    <td class ='dModel'></td>
+                    <td class ='dDistance'></td>
+                    <td class ='dRating'></td>
+                </tr>
+            </tbody>
+        </table>
+        
         </article>
 
         <aside class = "aside aside-1">
             <div class="profile">
-                    ID: Guest
+                    <div class = 'identifier'>Guest</div>
                     <div class="starability-result" data-rating="5"></div>
                     <div id = "grid">
                         <div class="avatar"></div>
@@ -36,9 +57,11 @@
                     </div>
             </div>
 
-            <label for="default">Enter a driver rating submission</label>
+            <label for="default">Enter a driver rating submission
+                <div class = 'uploadimg'></div> 
+            </label>
             <input type="text" class="user-input-title" placeholder="License Plate">
-            <input type="text" class="user-input-state" placeholder="State/Territory" list = "states">
+            <input type="text" class="user-input-state" placeholder="State/Territory" list = "states">    
               <datalist id="states">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -146,9 +169,10 @@
 
                   <div id="embedded">
                       <!-- Embedded gmap -->
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6046.142654729521!2d-73.988506!3d40.738456!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b79dcdc251b8415!2sGramercy+Tavern!5e0!3m2!1sen!2sus!4v1536723430338" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6046.142654729521!2d-73.988506!3d40.738456!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b79dcdc251b8415!2sGramercy+Tavern!5e0!3m2!1sen!2sus!4v1536723430338" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
                   
+                  <div id = "camView"></div>
         </aside>
         
       </div>

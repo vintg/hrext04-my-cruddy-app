@@ -51,10 +51,30 @@ $(document).ready(function() {
       }
     };
 
+  // Register and Login **************************************
+  // default
+   var userID = 'Guest';
+   for (var i =0; i<7;i++){
+     var rndDigit = Math.floor(Math.random()*10);
+     userID+= rndDigit.toString();
+   }
+   console.log(userID);
+   $(".identifier").html(userID);
+
+  //login
+   $(".login").on("click", function(){
+   
+   });
+
+   $(".reg").on("click", function(){
+   
+  });
+
   // submit entry *******************************************
   $(".add-text-btn").on("click", function(){
     // store values
-    var userID = 'guest';
+    var userID = $(".identifier").val();
+    
     var inputKey = $(".user-input-title").val(); // plate
     var inputValue = { // cmt, stars, state
                     feedback: [$(".user-input-body").val()],

@@ -14,6 +14,22 @@
   border-radius: 2em;
 }
 
+.uploadimg {
+  background-image: url(img/snap.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+  display:inline-block;
+  justify-content: baseline;
+  margin-left:1em;
+  height:2em;
+  width:2em;
+  opacity:.7;
+}
+
+.uploadimg:hover{
+  opacity:1;
+}
+
 .add-text-btn:hover, .login:hover, .reg:hover  {
   background-color: whitesmoke;
   color: black;
@@ -80,16 +96,37 @@ input[type=text]{
   }
 
   #map, #embedded{
-    min-height:50%;
-    width:100%;
-    margin:2em 0 2em 0;
-    flex-flow: row;
+    height:70%;
+    min-width:30%;
   }
 
-  #map{
-    max-width:320px;
+  #embedded{
+    overflow: hidden;
+    position: relative;
+    width:70%;
+  }
+
+  #embedded iframe{
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  #embedded-4x3 {
+    padding-top: 75%;
   }
  
+  #camView{
+   border: solid 1px whitesmoke;
+   display: block;
+   position: fixed;
+   bottom:2em;
+   width:42%;
+   height:50%;
+  }
 
   .footer {
     background: transparent;
@@ -108,7 +145,7 @@ input[type=text]{
   }
 
   .main {
-   margin-top:3em;
+   margin-left:3%;
    color:whitesmoke;
   }
 
@@ -129,7 +166,7 @@ input[type=text]{
   }
 
   .achievements{
-    background-transparent;
+    background: transparent;
     background-image:url(img/trophy.png);
     background-size:contain;
     background-repeat: no-repeat;
@@ -157,10 +194,20 @@ input[type=text]{
     opacity:.7;
     flex-flow: row-reverse;
     display:inline-flex;
-    min-width:50%;
+    width:42%;
+    padding:2em;
+    margin-top:2em;
     min-height:50%;
-    margin-right:2em;
     position:sticky;
+  }
+
+  table{
+    width:100%;
+    margin-top:2em;
+    table-layout: fixed;
+    background-color:transparent;
+    color:white;
+    opacity:.5;
   }
 
   #cmt{
