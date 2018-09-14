@@ -251,7 +251,7 @@ var genRandDriver = function(){
   car.id = guestGen();
   car.model = randomElement(carModels);
   car.distance = Number(Math.round(Math.random()*2+'e2')+'e-2').toFixed(2);
-  car.rating = 2+Math.floor(Math.random()*3);
+  car.rating = 1+Math.floor(Math.random()*3);
 
   var luckyStar = Math.random();
   if (luckyStar<.87 && luckyStar>.77){
@@ -353,24 +353,32 @@ var rndUpdate = function(){
   var nupdates = Math.floor(Math.random()*localCars.length * .3);
   for (var i =0;i<nupdates;i++){
     var updCar = randomElement(localCars);
-    if(updCar.id.substring(5)!=='Guest'){
-          var change = Number(Math.round(Math.random()*.2+'e2')+'e-2').toFixed(2);
-          var dir = 1;
-          if (Math.random() >5){
-            dir = -1;
-          }
-          updCar.distance = Math.max(0, updCar.distance - change *dir).toFixed(2);
-        
+    if(updCar.id.length <8){
         if (Math.random() < .5){
-          console.log(updCar.id+ ' random upvote');
+          //console.log(updCar.id+ ' random upvote');
           updater(updCar, -1);
         } else{
-          console.log(updCar.id+ ' random downvote');
+         // console.log(updCar.id+ ' random downvote');
           updater(updCar, 1);
         }
-      }
+    }
+  } //end for random vote
+
+  for(var j = 0;j<localCars.length;j++){
+    var updCar = localCars[j];
+    var change = Number(Math.round(Math.random()*.07+'e2')+'e-2').toFixed(2);
+    var dir = -1; 
+    if (Math.random() >.5 && updCar.distance > .02){
+      dir = +1;
+    }
+    updCar.distance = Math.max(0, updCar.distance - change *dir).toFixed(2);
+  }// end for all car dist
+  
+  var n = 1;
+  if(localCars.length<=10){
+    n+=Math.round(Math.random(3));
   }
-  initialize(Math.floor(Math.random()*5)+2);
+  initialize(Math.floor(Math.random()*(5*n)));
   refresh();
 };
 
@@ -387,24 +395,25 @@ var updater = function(dCar, vote){
       state: dCar.state,
       history: ['rndUpdate'],
   };
-    var temp=JSON.parse(localStorage.getItem(inputKey));
 
-    let newVal = { // cmt, stars, state
-      feedback: temp.feedback.concat(inputValue.feedback),
-      stars: temp.stars.concat(inputValue.stars),
-      state: inputValue.state,
-      history: temp.history.concat(inputValue.history), 
-      timestamps: temp.timestamps.concat(new Date())
-      };
-    
-    localStorage.setItem(inputKey, JSON.stringify(newVal));
+  var temp=JSON.parse(localStorage.getItem(inputKey));
+
+  let newVal = { // cmt, stars, state
+    feedback: temp.feedback.concat(inputValue.feedback),
+    stars: temp.stars.concat(inputValue.stars),
+    state: inputValue.state,
+    history: temp.history.concat(inputValue.history), 
+    timestamps: temp.timestamps.concat(new Date())
+    };
+  
+  localStorage.setItem(inputKey, JSON.stringify(newVal));
 
     //flash row based on vote
     
 };
 
 //start
-var refreshRate=1000; // in millisecs
+var refreshRate=133.7; // in millisecs
 var n = 33; // initial car val rand
 var b = 9; // initial car base val
 localStorage.clear();
