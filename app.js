@@ -206,22 +206,22 @@ var genRandDriver = function(){
   car.rating = Math.floor(Math.random()*3);
 
   var luckyStar = Math.random();
-  if (luckyStar<.21 && luckyStar>.07){
+  if (luckyStar<.87 && luckyStar>.77){
     car.model = randomElement(fourStarCars);
     car.rank+=10;
     car.rating = 4;
-  } else if (luckyStar<=.07){
+  } else if (luckyStar >.99 ){
     car.model = randomElement(fiveStarCars);
     car.rank+=30;
     car.rating = 5;
   }
 
+  localCars.push(car);
   addCar(car);
 };
 
 var addCar = function(newCar){
-  localCars.push(newCar);
-  var htmlstuff = '<tr class>' 
+  var htmlstuff = '<tr class = "neutral" >' 
                     +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
                     +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
                     +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
@@ -240,6 +240,52 @@ var initialize = function(){
 };
 
 initialize();
+
+// table sorts
+$(".hLevel").on("click", function(){
+  localCars.sort((a, b) => { return b.rank - a.rank; });
+  refresh();
+});
+
+$(".hID").on("click", function(){
+  localCars.sort((a, b) => { return Number(a.id.slice(5)) - Number(b.id.slice(5)); });
+  refresh();
+});
+
+$(".hModel").on("click", function(){
+  localCars.sort((a, b) => { 
+    var makeA = a.model.split(' ');
+    var makeB = b.model.split(' ');
+
+    var len = Math.max(makeA.length, makeB.length);
+    var idx=0;
+    for(var i=0; i<len-1;i++){
+      if(makeA[i] === makeB[i]){
+        idx++;
+      } else {
+        break;
+      }
+    }
+    return (makeA[idx]>makeB[idx]) ? 1:-1;
+    });
+  refresh();
+});
+
+$(".hDist").on("click", function(){
+  localCars.sort((a, b) => { return Number(a.distance) - Number(b.distance); });
+  refresh();
+});
+$(".hRating").on("click", function(){
+  localCars.sort((a, b) => { return parseInt(b.rating) - parseInt(a.rating); });
+  refresh();
+});
+
+var refresh = function(){
+  $( "#driverTable" ).empty();
+  for(var i =0; i<localCars.length;i++){
+    addCar(localCars[i]);
+  }
+}
 
 var rndUpdate = function(){
 
