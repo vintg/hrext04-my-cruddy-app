@@ -41,6 +41,9 @@ $(document).ready(function() {
   };
 
   // Register and Login **************************************
+  
+  // default
+
   var guestGen = function(){
     var n0 = 'Guest';
     for (var i =0; i<7;i++){
@@ -49,8 +52,7 @@ $(document).ready(function() {
     }
     return n0;
   }
-  
-  // default
+
    var userID = guestGen();
    console.log('User ID = ' + userID);
    $(".identifier").html(userID);
@@ -178,7 +180,7 @@ $(document).ready(function() {
 // random data gen **************************************
 var ncar = Math.floor(Math.random() * 10);
 var models = [
-  'Honda Civic', 'Honda Accord', 'Toyota Corolla', 'Toyota Camry', 'Nissan Sentra', 'Ford Fusion', 'Hyundai Elantra', 'Nissan Altima', 'Chevrolet Malibu', 'Chevrolet Cruze', 'Ford Mustang', 'Dodge Charger', 'Jeep Grand Cherokee', 'Ford Explorer', 'Jeep Cherokee', 'Jeep Wrangler', 'Honda CR-V', 'Mercedes-Benz E', 'Mercedes-Benz C', 'Tesla Model S', 'Tesla Model X', 'Tesla Model 3', 'Cadillac Escalade', 'Audi A8', 'Lexus RX', 'Subaru Forester', 'Toyota Prius', 'Audi A7', 'Audi A5', 'Toyota RAV4', 'BMW 5', 'BMW 3', 'Lexus ES', 'BMW X3', 'BMW X5' 'BMW 4', 'Audi A3', 'Audi Q3', 'Mazda 3', 'Mazda 6', 'Volkswagon Jetta', 'Acura TLX', 'Infiniti QX60', 'Kia Sorento', 'Dodge Caravan', 'Nissan GT-R', 'Audi R8', 'Porsche GT3 RS', 'Porsche Carrera GTS', 'Lamborghini Huracan', 'Acura NSX', 'Aston Martin Vantage', 'Ferrari 488 GTB', 'Maserati Quattroporte', 'Maserati Ghibli', 'Maserati GT', 'McLaren 720S', 'Koenigsegg CCR', 'Bugatti Chiron', 'Bugatti Veyron', 'Lamborghini Veneno'
+  'Honda Civic', 'Honda Accord', 'Toyota Corolla', 'Toyota Camry', 'Nissan Sentra', 'Ford Fusion', 'Hyundai Elantra', 'Nissan Altima', 'Chevrolet Malibu', 'Chevrolet Cruze', 'Ford Mustang', 'Dodge Charger', 'Jeep Grand Cherokee', 'Ford Explorer', 'Jeep Cherokee', 'Jeep Wrangler', 'Honda CR-V', 'Mercedes-Benz E', 'Mercedes-Benz C', 'Tesla Model S', 'Tesla Model X', 'Tesla Model 3', 'Cadillac Escalade', 'Audi A8', 'Lexus RX', 'Subaru Forester', 'Toyota Prius', 'Audi A7', 'Audi A5', 'Toyota RAV4', 'BMW 5', 'BMW 3', 'Lexus ES', 'BMW X3', 'BMW X5', 'BMW 4', 'Audi A3', 'Audi Q3', 'Mazda 3', 'Mazda 6', 'Volkswagon Jetta', 'Acura TLX', 'Infiniti QX60', 'Kia Sorento', 'Dodge Caravan', 'Nissan GT-R', 'Audi R8', 'Porsche GT3 RS', 'Porsche Carrera GTS', 'Lamborghini Huracan', 'Acura NSX', 'Aston Martin Vantage', 'Ferrari 488 GTB', 'Maserati Quattroporte', 'Maserati Ghibli', 'Maserati GT', 'McLaren 720S', 'Koenigsegg CCR', 'Bugatti Chiron', 'Bugatti Veyron', 'Lamborghini Veneno'
             ];
   
 
