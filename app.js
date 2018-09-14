@@ -276,13 +276,11 @@ var addCar = function(newCar){
   var divi = '"neutral"';
 
   if(newCar.rating<2){
-    divi = '"bad"';
-  } else if(newCar.rating===4){
-    divi = '"good"';
+    divi = '"warn"';
+  } else if(newCar.rating>3){
+    divi = '"cool"';
   }
-  //  elseif(newCar.rating===2){
-  //   divi = '"warning"';
-  // }
+  
   if(newCar.distance <=2){
     var htmlstuff = '<tr class = '+ divi + ' value = "'+ newCar.id+'">' 
                       +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
@@ -356,17 +354,17 @@ var rndUpdate = function(){
     if(updCar.id.length <8){
         if (Math.random() < .5){
           //console.log(updCar.id+ ' random upvote');
-          updater(updCar, -1);
+          updater(updCar, 1);
         } else{
          // console.log(updCar.id+ ' random downvote');
-          updater(updCar, 1);
+          updater(updCar, -1);
         }
     }
   } //end for random vote
 
   for(var j = 0;j<localCars.length;j++){
     var updCar = localCars[j];
-    var change = Number(Math.round(Math.random()*.07+'e2')+'e-2').toFixed(2);
+    var change = Number(Math.round(Math.random()*.03+'e2')+'e-2').toFixed(2);
     var dir = -1; 
     if (Math.random() >.5 && updCar.distance > .02){
       dir = +1;
@@ -379,17 +377,25 @@ var rndUpdate = function(){
     n+=Math.round(Math.random(3));
   }
   initialize(Math.floor(Math.random()*(5*n)));
-  refresh();
+
 };
 
 var updater = function(dCar, vote){
   let inputKey = dCar.id.toString();
-  var rate = 4+Math.round(Math.random()*1);
     
+  //flash row based on vote
   if (vote<0){
-    rate = Math.round(Math.random()*2);
-    //flash row based on vote
-    $("#driverTable").find()
+    var rate = Math.round(Math.random()*2);
+    $('tr[value="' + inputKey +'"]').addClass('bad');
+    setTimeout(function(){
+      $('tr[value="' + inputKey +'"]').removeClass('bad');
+    },300);
+  } else{
+    var rate = 4+Math.round(Math.random()*1);
+    $('tr[value="' + inputKey +'"]').addClass('good');
+    setTimeout(function(){
+      $('tr[value="' + inputKey +'"]').removeClass('good');
+    },300);
   }
 
   let inputValue = {
@@ -410,10 +416,11 @@ var updater = function(dCar, vote){
     };
   
   localStorage.setItem(inputKey, JSON.stringify(newVal));
+  //setTimeout(refresh(), 300);
 };
 
 //start
-var refreshRate=133.7; // in millisecs
+var refreshRate=1337; // in millisecs
 var n = 33; // initial car val rand
 var b = 9; // initial car base val
 localStorage.clear();

@@ -22,6 +22,16 @@ tr.good{
   background-color: green;
 }
 
+tr.warn{
+  color: red;
+  font-weight: bolder;
+}
+
+tr.cool{
+  color: goldenrod;
+  font-weight: bold;
+}
+
 .uploadimg {
   background-image: url(img/snap.png);
   background-repeat: no-repeat;
