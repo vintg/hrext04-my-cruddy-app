@@ -54,6 +54,19 @@ $(document).ready(function() {
   //login
    $(".login").on("click", function(){
     // to do
+
+    //admin
+    $(".avatar").css({'background-image': 'url(img/avent.png'});
+    $(".achievements").css({'opacity': '1' });
+    $(".user-rating").html( '<div class="starability-result" data-rating="5"></div>')
+    $(".level").val(99);
+    $(".level").html('<h2>Level 99</h2>');
+    userID = 'Admin';
+    $(".identifier").html(userID);
+    $(".identifier").val(userID);
+    $(".del-text-btn").css({'opacity':'1'});
+    // end admin
+
    });
 
    $(".reg").on("click", function(){

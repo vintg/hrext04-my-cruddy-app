@@ -40,6 +40,7 @@
   background:transparent;
   color:grey;
   border:none;
+  opacity:0;
 }
 
 label {
@@ -154,12 +155,15 @@ input[type=text]{
   .profile{
     min-height: 170px;
     font-size:2em;
+  }
 
+  .level{
+    float:left;
   }
 
   .avatar{
     background:transparent;
-    background-image:url(img/avatar.png);
+    background-image:url(img/default.png);
     background-size:contain;
     background-repeat: no-repeat;
     width:260px;
@@ -174,6 +178,7 @@ input[type=text]{
     background-repeat: no-repeat;
     width:100px;
     height:100px;
+    opacity:0;
   }
 
   #grid{
