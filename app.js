@@ -43,7 +43,6 @@ $(document).ready(function() {
   // Register and Login **************************************
   
   // default
-
   var guestGen = function(){
     var n0 = 'Guest';
     for (var i =0; i<7;i++){
@@ -178,11 +177,71 @@ $(document).ready(function() {
   // how do we get keys? research Object.keys
 
 // random data gen **************************************
-var ncar = Math.floor(Math.random() * 10);
-var models = [
-  'Honda Civic', 'Honda Accord', 'Toyota Corolla', 'Toyota Camry', 'Nissan Sentra', 'Ford Fusion', 'Hyundai Elantra', 'Nissan Altima', 'Chevrolet Malibu', 'Chevrolet Cruze', 'Ford Mustang', 'Dodge Charger', 'Jeep Grand Cherokee', 'Ford Explorer', 'Jeep Cherokee', 'Jeep Wrangler', 'Honda CR-V', 'Mercedes-Benz E', 'Mercedes-Benz C', 'Tesla Model S', 'Tesla Model X', 'Tesla Model 3', 'Cadillac Escalade', 'Audi A8', 'Lexus RX', 'Subaru Forester', 'Toyota Prius', 'Audi A7', 'Audi A5', 'Toyota RAV4', 'BMW 5', 'BMW 3', 'Lexus ES', 'BMW X3', 'BMW X5', 'BMW 4', 'Audi A3', 'Audi Q3', 'Mazda 3', 'Mazda 6', 'Volkswagon Jetta', 'Acura TLX', 'Infiniti QX60', 'Kia Sorento', 'Dodge Caravan', 'Nissan GT-R', 'Audi R8', 'Porsche GT3 RS', 'Porsche Carrera GTS', 'Lamborghini Huracan', 'Acura NSX', 'Aston Martin Vantage', 'Ferrari 488 GTB', 'Maserati Quattroporte', 'Maserati Ghibli', 'Maserati GT', 'McLaren 720S', 'Koenigsegg CCR', 'Bugatti Chiron', 'Bugatti Veyron', 'Lamborghini Veneno'
+var localCars = [];
+
+var carModels = [
+  'Honda Civic', 'Honda Accord', 'Toyota Corolla', 'Toyota Camry', 'Nissan Sentra', 'Ford Fusion', 'Hyundai Elantra', 'Nissan Altima', 'Chevrolet Malibu', 'Chevrolet Cruze', 'Ford Mustang', 'Dodge Charger', 'Jeep Grand Cherokee', 'Ford Explorer', 'Jeep Cherokee', 'Jeep Wrangler', 'Honda CR-V',  'Cadillac Escalade',  'Subaru Forester', 'Toyota Prius', 'Toyota RAV4',  'Mazda 3', 'Mazda 6', 'Volkswagon Jetta', 'Acura TLX', 'Kia Sorento', 'Dodge Caravan', 'Infiniti QX60', 'Tesla Model 3', 'Mercedes-Benz E', 'Mercedes-Benz C'
             ];
+
+var fourStarCars = [
+  'BMW 5', 'BMW 3', 'Lexus ES', 'BMW X3', 'BMW X5', 'BMW 4', 'Audi A3', 'Audi Q3', 'Audi A7', 'Audi A5', 'Audi A8', 'Lexus RX', 'Acura NSX', 'Maserati Quattroporte', 'Maserati Ghibli', 'Maserati GT', 'Tesla Model S', 'Tesla Model X'
+];
+
+var fiveStarCars = [
+  'Nissan GT-R', 'Audi R8', 'Porsche GT3 RS', 'Porsche Carrera GTS', 'Lamborghini Huracan', 'Aston Martin Vantage', 'Ferrari 488 GTB', 'McLaren 720S', 'Koenigsegg CCR', 'Bugatti Chiron', 'Bugatti Veyron', 'Lamborghini Veneno'
+];
   
+var randomElement = function(array){
+  var randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+};
+
+var genRandDriver = function(){
+  var car = {};
+  car.rank = Math.floor(Math.random()*42);
+  car.id = guestGen();
+  car.model = randomElement(carModels);
+  car.distance = Number(Math.round(Math.random()*2+'e2')+'e-2').toFixed(2);
+  car.rating = Math.floor(Math.random()*3);
+
+  var luckyStar = Math.random();
+  if (luckyStar<.3 && luckyStar>.1){
+    car.model = randomElement(fourStarCars);
+    car.rank+=10;
+    car.rating = 4;
+  } else if (luckyStar<=.1){
+    car.model = randomElement(fiveStarCars);
+    car.rank+=30;
+    car.rating = 5;
+  }
+  
+  addCar(car);
+};
+
+var addCar = function(newCar){
+  localCars.push(newCar);
+  var htmlstuff = '<tr class>' 
+                    +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
+                    +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
+                    +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
+                    +'<td class ="dDistance" value ="'+newCar.distance+'">'+ newCar.distance +' mi' +'</td>'
+                    +'<td class ="dRating" value ="'+newCar.rating+'">'+ '<div class="starability-result" data-rating="' + newCar.rating +'"></div>' +'</td>'
+                +'</tr>';
+  $("#driverTable").append(htmlstuff);
+}
+
+var initialize = function(){
+  var ncar = Math.floor(Math.random() * 21);
+  for (var i =0;i<ncar;i++){
+    genRandDriver();
+  }
+};
+
+initialize();
+
+var rndUpdate = function(){
+
+};
 
 //
 
