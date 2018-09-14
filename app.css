@@ -181,6 +181,10 @@ input[type=text]{
     opacity:0;
   }
 
+  .leaderboard{
+    max-width: 800px;
+  }
+
   #grid{
     display:inline-flex;
     flex-flow:row;
