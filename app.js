@@ -65,8 +65,8 @@ $(document).ready(function() {
         var prev = new Date(temp.timestamps[temp.history.lastIndexOf(userID)]);
         var next = inputValue.timestamps[0];
 
-        if( !dateRange(prev, next) && userID!='Admin'){
-          console.log('appending...');
+        if( !dateRange(prev, next) || userID==='Admin'){
+          console.log('appending ' + userID +'\'s update...');
           
           let newVal = { // cmt, stars, state
             feedback: temp.feedback.concat(inputValue.feedback),
@@ -82,7 +82,11 @@ $(document).ready(function() {
           var msg = 'You\'ve already provided feedback on this driver recently.';
         }
 
-      } else { 
+      } else { // ok to process
+        var vote = 1;
+        if(inputValue.stars<3){ vote =-1;}
+
+        updater(inputKey, vote, inputValue.stars);
         localStorage.setItem(inputKey, JSON.stringify(inputValue));
       } //end if storing value
 
@@ -380,18 +384,18 @@ var rndUpdate = function(){
 
 };
 
-var updater = function(dCar, vote){
+var updater = function(dCar, vote, rate){
   let inputKey = dCar.id.toString();
     
   //flash row based on vote
   if (vote<0){
-    var rate = Math.round(Math.random()*2);
+    if(!rate){var rate = Math.round(Math.random()*2);}
     $('tr[value="' + inputKey +'"]').addClass('bad');
     setTimeout(function(){
       $('tr[value="' + inputKey +'"]').removeClass('bad');
     },300);
   } else{
-    var rate = 4+Math.round(Math.random()*1);
+    if(!rate){var rate = 4+Math.round(Math.random()*1);}
     $('tr[value="' + inputKey +'"]').addClass('good');
     setTimeout(function(){
       $('tr[value="' + inputKey +'"]').removeClass('good');

@@ -162,6 +162,8 @@ input[type=text]{
 
   .display{
     min-height:6em;
+    max-width: 500px;
+    overflow-x: hidden;
   }
 
   .main {
