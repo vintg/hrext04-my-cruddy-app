@@ -65,7 +65,7 @@ $(document).ready(function() {
         var prev = new Date(temp.timestamps[temp.history.lastIndexOf(userID)]);
         var next = inputValue.timestamps[0];
 
-        if( !dateRange(prev, next) ){
+        if( !dateRange(prev, next) && userID!='Admin'){
           console.log('appending...');
           
           let newVal = { // cmt, stars, state
@@ -107,12 +107,6 @@ $(document).ready(function() {
     // https://learn.jquery.com/events/event-delegation/
 
   });
-
-  var sum = function(array){
-    return array.reduce(function(total,n){
-      return total+parseInt(n);
-    },0);
-  };
 
    // TODO add back in later
    // $(".user-input").on("keyup", function(){
@@ -197,13 +191,67 @@ var randomElement = function(array){
   return array[randomIndex];
 };
 
+var randUser = function(aCar){
+    var dUser = {
+      feedback :[],
+      stars: [],
+      state:'NJ',
+      history:[],
+      timestamps: []
+    };
+
+    var ct = Math.floor(Math.random()*10);
+    for(var i =0; i< ct; i++){
+      dUser.feedback.push('system');
+      dUser.history.push('system');
+      dUser.timestamps.push(new Date('July 4, 2018 00:00:00'));
+
+      if(i>Math.floor(ct/2)){
+        dUser.stars.push(aCar.rating - Math.floor(Math.random()*1));
+      } else {
+        dUser.stars.push(aCar.rating + Math.floor(Math.random()*1));
+      }
+    }
+
+    var sum = function(array){
+      return array.reduce(function(total,n){
+        return total+parseInt(n);
+      },0);
+    };
+
+    var avg = function(array){
+      var n = array.length;
+      if(!parseInt(n)){n=1;}
+      return sum(array)/n;
+    };
+
+    aCar.rating = avg(dUser.stars);
+    
+
+    var rndPlate = function(l,n){
+      var plate = '';
+      for (var i = 0; i<l;i++){
+        plate+= (String.fromCharCode(Math.floor(Math.random() * 26) + 97)).toUpperCase();
+      }
+      for (var j = 0; j<n;j++){
+        plate+= Math.floor(Math.random()*10);
+      }
+        return plate;
+    };
+
+    aCar.id = rndPlate(4,2);
+
+    localStorage.setItem(aCar.id, JSON.stringify(dUser));
+    return aCar;
+};
+
 var genRandDriver = function(){
   var car = {};
   car.rank = Math.floor(Math.random()*42);
   car.id = guestGen();
   car.model = randomElement(carModels);
   car.distance = Number(Math.round(Math.random()*2+'e2')+'e-2').toFixed(2);
-  car.rating = Math.floor(Math.random()*3);
+  car.rating = 2+Math.floor(Math.random()*3);
 
   var luckyStar = Math.random();
   if (luckyStar<.87 && luckyStar>.77){
@@ -216,12 +264,28 @@ var genRandDriver = function(){
     car.rating = 5;
   }
 
+  if(car.rating!==3){
+    car = randUser(car);
+  }
+
   localCars.push(car);
   addCar(car);
 };
 
 var addCar = function(newCar){
-  var htmlstuff = '<tr class = "neutral" >' 
+  var divi = '"neutral"';
+
+  if(newCar.rating<2){
+    divi = '"bad"';
+  } else if(newCar.rating===4){
+    divi = '"good"';
+  }
+  //  elseif(newCar.rating===2){
+  //   divi = '"warning"';
+  // }
+  console.log(newCar.rating, divi);
+
+  var htmlstuff = '<tr class = '+ divi + '>' 
                     +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
                     +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
                     +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
@@ -232,11 +296,11 @@ var addCar = function(newCar){
 }
 
 var initialize = function(){
-  var ncar = Math.floor(Math.random() * 33 +9);
+  localStorage.clear();
+  var ncar = Math.floor(Math.random() * 33+9);
   for (var i =0;i<ncar;i++){
     genRandDriver();
   }
-
 };
 
 initialize();

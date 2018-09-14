@@ -14,6 +14,14 @@
   border-radius: 2em;
 }
 
+tr.bad {
+  background-color: rgb(134, 7, 7);
+}
+
+tr.good{
+  background-color: green;
+}
+
 .uploadimg {
   background-image: url(img/snap.png);
   background-repeat: no-repeat;
