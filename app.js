@@ -386,22 +386,6 @@ var rndUpdate = function(){
 
 var updater = function(dCar, vote, rate){
   let inputKey = dCar.id.toString();
-    
-  //flash row based on vote
-  if (vote<0){
-    if(!rate){var rate = Math.round(Math.random()*2);}
-    $('tr[value="' + inputKey +'"]').addClass('bad');
-    setTimeout(function(){
-      $('tr[value="' + inputKey +'"]').removeClass('bad');
-    },300);
-  } else{
-    if(!rate){var rate = 4+Math.round(Math.random()*1);}
-    $('tr[value="' + inputKey +'"]').addClass('good');
-    setTimeout(function(){
-      $('tr[value="' + inputKey +'"]').removeClass('good');
-    },300);
-  }
-
   let inputValue = {
       feedback: ['rndUpdate'],
       stars: [rate],
@@ -420,11 +404,26 @@ var updater = function(dCar, vote, rate){
     };
   
   localStorage.setItem(inputKey, JSON.stringify(newVal));
-  //setTimeout(refresh(), 300);
+  setTimeout(refresh(), 200);
+
+    //flash row based on vote
+    if (vote<0){
+      if(!rate){var rate = Math.round(Math.random()*2);}
+      $('tr[value="' + inputKey +'"]').addClass('bad');
+      setTimeout(function(){
+        $('tr[value="' + inputKey +'"]').removeClass('bad');
+      },300);
+    } else{
+      if(!rate){var rate = 4+Math.round(Math.random()*1);}
+      $('tr[value="' + inputKey +'"]').addClass('good');
+      setTimeout(function(){
+        $('tr[value="' + inputKey +'"]').removeClass('good');
+      },300);
+    }
 };
 
 //start
-var refreshRate=1337; // in millisecs
+var refreshRate=133.7; // in millisecs
 var n = 33; // initial car val rand
 var b = 9; // initial car base val
 localStorage.clear();
