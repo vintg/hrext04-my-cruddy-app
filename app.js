@@ -40,45 +40,6 @@ $(document).ready(function() {
       return !!serial.match(re);
   };
 
-  // Register and Login **************************************
-  
-  // default
-  var guestGen = function(){
-    var n0 = 'Guest';
-    for (var i =0; i<7;i++){
-      var rndDigit = Math.floor(Math.random()*10);
-      n0+= rndDigit.toString();
-    }
-    return n0;
-  }
-
-   var userID = guestGen();
-   console.log('User ID = ' + userID);
-   $(".identifier").html(userID);
-   $(".identifier").val(userID);
-
-  //login
-   $(".login").on("click", function(){
-    // to do
-
-    //admin
-    $(".avatar").css({'background-image': 'url(img/avent.png'});
-    $(".achievements").css({'opacity': '1' });
-    $(".user-rating").html( '<div class="starability-result" data-rating="5"></div>')
-    $(".level").val(99);
-    $(".level").html('<h2>Level 99</h2>');
-    userID = 'Admin';
-    $(".identifier").html(userID);
-    $(".identifier").val(userID);
-    $(".del-text-btn").css({'opacity':'1'});
-    // end admin
-
-   });
-
-   $(".reg").on("click", function(){
-    // to do
-  });
-
   // submit entry *******************************************
   $(".add-text-btn").on("click", function(){
     // store values
@@ -176,6 +137,46 @@ $(document).ready(function() {
    // store data with individual keys
   // how do we get keys? research Object.keys
 
+   // Register and Login **************************************
+  
+  // default
+  var guestGen = function(){
+    var n0 = 'Guest';
+    for (var i =0; i<7;i++){
+      var rndDigit = Math.floor(Math.random()*10);
+      n0+= rndDigit.toString();
+    }
+    return n0;
+  }
+
+   var userID = guestGen();
+
+   console.log('User ID = ' + userID);
+   $(".identifier").html(userID);
+   $(".identifier").val(userID);
+
+  //login
+   $(".login").on("click", function(){
+    // to do
+
+    //admin
+    $(".avatar").css({'background-image': 'url(img/avent.png'});
+    $(".achievements").css({'opacity': '1' });
+    $(".user-rating").html( '<div class="starability-result" data-rating="5"></div>')
+    $(".level").val(99);
+    $(".level").html('<h2>Level 99</h2>');
+    userID = 'Admin';
+    $(".identifier").html(userID);
+    $(".identifier").val(userID);
+    $(".del-text-btn").css({'opacity':'1'});
+    // end admin
+
+   });
+
+   $(".reg").on("click", function(){
+    // to do
+  });
+
 // random data gen **************************************
 var localCars = [];
 
@@ -205,16 +206,16 @@ var genRandDriver = function(){
   car.rating = Math.floor(Math.random()*3);
 
   var luckyStar = Math.random();
-  if (luckyStar<.3 && luckyStar>.1){
+  if (luckyStar<.21 && luckyStar>.07){
     car.model = randomElement(fourStarCars);
     car.rank+=10;
     car.rating = 4;
-  } else if (luckyStar<=.1){
+  } else if (luckyStar<=.07){
     car.model = randomElement(fiveStarCars);
     car.rank+=30;
     car.rating = 5;
   }
-  
+
   addCar(car);
 };
 
@@ -231,10 +232,11 @@ var addCar = function(newCar){
 }
 
 var initialize = function(){
-  var ncar = Math.floor(Math.random() * 21);
+  var ncar = Math.floor(Math.random() * 33 +9);
   for (var i =0;i<ncar;i++){
     genRandDriver();
   }
+
 };
 
 initialize();
