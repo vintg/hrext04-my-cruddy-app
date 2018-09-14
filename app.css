@@ -120,12 +120,13 @@ input[type=text]{
   }
  
   #camView{
-   border: solid 1px whitesmoke;
+   border: none;
    display: block;
    position: fixed;
-   bottom:2em;
+   bottom:5%;
    width:42%;
-   height:50%;
+   max-height:50%;
+   min-height:36%;
   }
 
   .footer {
@@ -147,6 +148,7 @@ input[type=text]{
   .main {
    margin-left:3%;
    color:whitesmoke;
+   min-width:320px;
   }
 
   .profile{
@@ -252,4 +254,5 @@ input[type=text]{
     background-size: cover;
     background-color:black;
     height:100%;
+    min-width:1000px;
   }

@@ -40,17 +40,6 @@ $(document).ready(function() {
       return !!serial.match(re);
   };
 
-    // star ratings bar *********************************************
-
-    var star = function(){
-      const starTotal = 5;
-      for(const rating in ratings) {  
-        const starPercentage = (ratings[rating] / starTotal) * 100;
-        const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-        document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded; 
-      }
-    };
-
   // Register and Login **************************************
   // default
    var userID = 'Guest';
@@ -58,23 +47,22 @@ $(document).ready(function() {
      var rndDigit = Math.floor(Math.random()*10);
      userID+= rndDigit.toString();
    }
-   console.log(userID);
+   console.log('User ID = ' + userID);
    $(".identifier").html(userID);
+   $(".identifier").val(userID);
 
   //login
    $(".login").on("click", function(){
-   
+    // to do
    });
 
    $(".reg").on("click", function(){
-   
+    // to do
   });
 
   // submit entry *******************************************
   $(".add-text-btn").on("click", function(){
     // store values
-    var userID = $(".identifier").val();
-    
     var inputKey = $(".user-input-title").val(); // plate
     var inputValue = { // cmt, stars, state
                     feedback: [$(".user-input-body").val()],
@@ -91,12 +79,13 @@ $(document).ready(function() {
     }
 
     if(validPlate(inputKey, inputValue.state)){
+
       if( !!localStorage.getItem(inputKey.toString()) ){
         var temp=JSON.parse(localStorage.getItem(inputKey));
-
         var prev = new Date(temp.timestamps[temp.history.lastIndexOf(userID)]);
         var next = inputValue.timestamps[0];
-        if( dateRange(prev, next)){
+
+        if( !dateRange(prev, next) ){
           console.log('appending...');
           
           let newVal = { // cmt, stars, state
@@ -108,55 +97,42 @@ $(document).ready(function() {
             };
           
           localStorage.setItem(inputKey, JSON.stringify(newVal));
-          
-            // clear input box values
-            $(".user-input-title").val("");
-            $(".user-input-body").val("");
-            $(".user-input-state").val(""); 
-            // $("input[type='radio'][name='rating']:checked").val("");
-            // star();
-
+          var msg = JSON.stringify(inputValue);
         } else {
-          console.log('You\'ve already provided feedback on this driver recently.');
+          var msg = 'You\'ve already provided feedback on this driver recently.';
         }
+
       } else { 
         localStorage.setItem(inputKey, JSON.stringify(inputValue));
-      }
+      } //end if storing value
 
-      var sum = function(array){
-        return array.reduce(function(total,n){
-          return total+parseInt(n);
-        },0);
-      };
-
-      // data-display
-      let itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  localStorage.getItem(inputKey) + '</div>';
-      $(".display").html(itemHtml);
     } else {
-      alert('Invalid license plate ID');
-      console.log('Invalid license plate ID');
-    }
- 
-    console.log(localStorage);
+    var msg = 'Invalid license plate ID';
+    } // end plate validation
+
+    // clear input box values
+    $(".user-input-title").val("");
+    $(".user-input-body").val("");
+    $(".user-input-state").val(""); 
+    // $("input[type='radio'][name='rating']:checked").val("");
+    // star();
+
+    // data-display
+    var itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  msg + '</div>';
+    $(".display").html(itemHtml);
+    setTimeout(function(){ $('.display').fadeOut("slow") }, 2000);
+    console.log(msg);
 
     // how can we delegate this event to the outer html node?
     // https://learn.jquery.com/events/event-delegation/
 
-    // display submitted entry ************************************
-
-    $(".display-item").on("click", function(e){
-      // plop the key:value back into the input boxes
-
-      // get the values from the the divs?
-      console.log("key=> ", e.target.dataset.storageKey); // user-input-title
-      localStorage.getItem(e.target.dataset.storageKey); // user-input-body
-
-      // set those values in the form fields
-      $(".user-input-title").val(e.target.dataset.storageKey);
-      $(".user-input-body").val(localStorage.getItem(e.target.dataset.storageKey));
-    });
-
   });
+
+  var sum = function(array){
+    return array.reduce(function(total,n){
+      return total+parseInt(n);
+    },0);
+  };
 
    // TODO add back in later
    // $(".user-input").on("keyup", function(){
