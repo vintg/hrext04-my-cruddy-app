@@ -200,7 +200,7 @@ var randUser = function(aCar){
       timestamps: []
     };
 
-    var ct = Math.floor(Math.random()*10);
+    var ct = Math.floor(Math.random()*10)+2;
     for(var i =0; i< ct; i++){
       dUser.feedback.push('system');
       dUser.history.push('system');
@@ -283,27 +283,24 @@ var addCar = function(newCar){
   //  elseif(newCar.rating===2){
   //   divi = '"warning"';
   // }
-  console.log(newCar.rating, divi);
-
-  var htmlstuff = '<tr class = '+ divi + '>' 
-                    +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
-                    +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
-                    +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
-                    +'<td class ="dDistance" value ="'+newCar.distance+'">'+ newCar.distance +' mi' +'</td>'
-                    +'<td class ="dRating" value ="'+newCar.rating+'">'+ '<div class="starability-result" data-rating="' + newCar.rating +'"></div>' +'</td>'
-                +'</tr>';
-  $("#driverTable").append(htmlstuff);
+  if(newCar.distance <=2){
+    var htmlstuff = '<tr class = '+ divi + '>' 
+                      +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
+                      +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
+                      +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
+                      +'<td class ="dDistance" value ="'+newCar.distance+'">'+ newCar.distance +' mi' +'</td>'
+                      +'<td class ="dRating" value ="'+newCar.rating+'">'+ '<div class="starability-result" data-rating="' + newCar.rating +'"></div>' +'</td>'
+                  +'</tr>';
+    $("#driverTable").append(htmlstuff);
+  }
 }
 
-var initialize = function(){
-  localStorage.clear();
-  var ncar = Math.floor(Math.random() * 33+9);
+var initialize = function(n, b){
+  var ncar = Math.floor(Math.random() * n+b);
   for (var i =0;i<ncar;i++){
     genRandDriver();
   }
 };
-
-initialize();
 
 // table sorts
 $(".hLevel").on("click", function(){
@@ -345,6 +342,7 @@ $(".hRating").on("click", function(){
 });
 
 var refresh = function(){
+  console.log('refreshing...');
   $( "#driverTable" ).empty();
   for(var i =0; i<localCars.length;i++){
     addCar(localCars[i]);
@@ -352,9 +350,68 @@ var refresh = function(){
 }
 
 var rndUpdate = function(){
-
+  var nupdates = Math.floor(Math.random()*localCars.length * .3);
+  for (var i =0;i<nupdates;i++){
+    var updCar = randomElement(localCars);
+    if(updCar.id.substring(5)!=='Guest'){
+          var change = Number(Math.round(Math.random()*.2+'e2')+'e-2').toFixed(2);
+          var dir = 1;
+          if (Math.random() >5){
+            dir = -1;
+          }
+          updCar.distance = Math.max(0, updCar.distance - change *dir).toFixed(2);
+        
+        if (Math.random() < .5){
+          console.log(updCar.id+ ' random upvote');
+          updater(updCar, -1);
+        } else{
+          console.log(updCar.id+ ' random downvote');
+          updater(updCar, 1);
+        }
+      }
+  }
+  initialize(Math.floor(Math.random()*5)+2);
+  refresh();
 };
 
+var updater = function(dCar, vote){
+  let inputKey = dCar.id.toString();
+  var rate = 4+Math.round(Math.random()*1);
+  if (vote<0){
+    rate = Math.round(Math.random()*2);
+  }
+
+  let inputValue = {
+      feedback: ['rndUpdate'],
+      stars: [rate],
+      state: dCar.state,
+      history: ['rndUpdate'],
+  };
+    var temp=JSON.parse(localStorage.getItem(inputKey));
+
+    let newVal = { // cmt, stars, state
+      feedback: temp.feedback.concat(inputValue.feedback),
+      stars: temp.stars.concat(inputValue.stars),
+      state: inputValue.state,
+      history: temp.history.concat(inputValue.history), 
+      timestamps: temp.timestamps.concat(new Date())
+      };
+    
+    localStorage.setItem(inputKey, JSON.stringify(newVal));
+
+    //flash row based on vote
+    
+};
+
+//start
+var refreshRate=1000; // in millisecs
+var n = 33; // initial car val rand
+var b = 9; // initial car base val
+localStorage.clear();
+initialize(n,b);
+rndUpdate();
+setInterval(refresh(), refreshRate);
+setInterval(rndUpdate, Math.random() * 2000);
 //
 
 });
