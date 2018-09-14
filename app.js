@@ -284,7 +284,7 @@ var addCar = function(newCar){
   //   divi = '"warning"';
   // }
   if(newCar.distance <=2){
-    var htmlstuff = '<tr class = '+ divi + '>' 
+    var htmlstuff = '<tr class = '+ divi + ' value = "'+ newCar.id+'">' 
                       +'<td class ="dRank" value ="'+newCar.rank+'">'+ newCar.rank +'</td>'
                       +'<td class ="dId" value ="'+newCar.id+'">'+ newCar.id +'</td>'
                       +'<td class ="dModel" value ="'+newCar.model+'">'+ newCar.model +'</td>'
@@ -385,8 +385,11 @@ var rndUpdate = function(){
 var updater = function(dCar, vote){
   let inputKey = dCar.id.toString();
   var rate = 4+Math.round(Math.random()*1);
+    
   if (vote<0){
     rate = Math.round(Math.random()*2);
+    //flash row based on vote
+    $("#driverTable").find()
   }
 
   let inputValue = {
@@ -407,9 +410,6 @@ var updater = function(dCar, vote){
     };
   
   localStorage.setItem(inputKey, JSON.stringify(newVal));
-
-    //flash row based on vote
-    
 };
 
 //start
